@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ARMapViewController">
             <connections>
+                <outlet property="huntMapView" destination="IVf-y2-IYZ" id="oMT-gA-dT0"/>
                 <outlet property="view" destination="1" id="Z5s-JU-tpi"/>
             </connections>
         </placeholder>
@@ -20,7 +21,17 @@
                     <state key="normal" title="ipad">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="pressButton:" destination="-1" eventType="touchUpInside" id="Jbx-Pv-AFL"/>
+                    </connections>
                 </button>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IVf-y2-IYZ">
+                    <rect key="frame" x="49" y="96" width="493" height="545"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="0fl-ZZ-Cr3"/>
+                    </connections>
+                </mapView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>

@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    huntMapView.showsUserLocation=TRUE;
+   // huntMapView.showsUserLocation=TRUE;
     
  
 
@@ -45,10 +45,14 @@
 #pragma mark - MapView delegate
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation: (MKUserLocation *)userLocation
 {
-    //mapView.centerCoordinate =userLocation.location.coordinate;
+ //   mapView.centerCoordinate =userLocation.location.coordinate;
 }
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
+    if ([[annotation title] isEqualToString:@"Current Location"]) {
+        return nil;
+    }
+
       NSLog(@"viewForAnnotation");
     static NSString *identifier = @"MyLocation";
     if ([annotation isKindOfClass:[ARMapViewAnnotation class]]) {
