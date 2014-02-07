@@ -7,8 +7,11 @@
 //
 
 #import "ARStateViewController.h"
-
+#import <Parse/Parse.h>
 @interface ARStateViewController ()
+{
+    NSMutableArray* friendsDetailsArray;
+}
 
 @end
 
@@ -27,12 +30,131 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    friendsDetailsArray=[NSMutableArray array];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Button Action
+- (IBAction)pressLogin:(id)sender {
+    
+    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location",@"email"];
+    
+    // Login PFUser using Facebook
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+
+        
+        if (!user) {
+            if (!error) {
+                NSLog(@"Uh oh. The user cancelled the Facebook login.");
+            } else {
+                NSLog(@"Uh oh. An error occurred: %@", error);
+            }
+        } else if (user.isNew) {
+            NSLog(@"User with facebook signed up and logged in!");
+            
+            
+            
+           // [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+        } else {
+            NSLog(@"User with facebook logged in!");
+           // [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+        }
+    }];
+    
+}
+
+- (IBAction)pressGetfriend:(id)sender
+{
+    
+    [PFAnalytics trackEvent:@"pressGetfriend"];
+    
+    // Initialize the friend picker
+//    FBFriendPickerViewController *friendPickerController =
+//    [[FBFriendPickerViewController alloc] init];
+//    // Set the friend picker title
+//    friendPickerController.title = @"Pick Friends";
+//    friendPickerController.allowsMultipleSelection = NO;
+//    
+//    // Hide the friend profile pictures
+//    friendPickerController.itemPicturesEnabled = NO;
+//    
+//    // Configure how friends are sorted in the display.
+//    // Sort friends by their last names.
+//    friendPickerController.sortOrdering = FBFriendSortByLastName;
+//    
+//    // Configure how each friend's name is displayed.
+//    // Display the last name first.
+//    friendPickerController.displayOrdering = FBFriendDisplayByLastName;
+//    
+//    // Hide the done button
+//    friendPickerController.doneButton = nil;
+//
+//    
+//    // Hide the cancel button
+//    friendPickerController.cancelButton = nil;
+//    // TODO: Set up the delegate to handle picker callbacks, ex: Done/Cancel button
+//    
+//    // Load the friend data
+//    [friendPickerController loadData];
+//    // Show the picker modally
+//    [friendPickerController presentModallyFromViewController:self animated:YES handler:nil];
+//    NSString* query = [NSString stringWithFormat:@"SELECT uid,name,birthday_date,picture FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me())"];
+//    
+//    // Set up the query parameter
+//    NSDictionary *queryParam = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                query, @"q", nil];
+//    // Make the API request that uses FQL
+//    [FBRequestConnection startWithGraphPath:@"/fql"
+//                                 parameters:queryParam
+//                                 HTTPMethod:@"GET"
+//                          completionHandler:^(FBRequestConnection *connection,
+//                                              id result,
+//                                              NSError *error) {
+//                              if (!error)
+//                              {
+//                                  NSLog(@"result is %@",result);
+//                                  
+//                                  [friendsDetailsArray removeAllObjects];
+//                                  NSArray *resultData = [result objectForKey:@"data"];
+//                                  if ([resultData count] > 0) {
+//                                      for (NSUInteger i=0; i<[resultData count] ; i++) {
+//                                          [friendsDetailsArray addObject:[resultData objectAtIndex:i]];
+//                                          NSLog(@"friend details are %@",friendsDetailsArray);
+//                                      }
+//                                  }
+//                              }
+//                              
+//                          }];
+    
+    
+//    [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+//        if (!error) {
+//            // result will contain an array with your user's friends in the "data" key
+//            NSArray *friendObjects = [result objectForKey:@"data"];
+//            NSMutableArray *friendIds = [NSMutableArray arrayWithCapacity:friendObjects.count];
+//            // Create a list of friends' Facebook IDs
+//            for (NSDictionary *friendObject in friendObjects) {
+//                [friendIds addObject:[friendObject objectForKey:@"id"]];
+//            }
+//            
+//            // Construct a PFUser query that will find friends whose facebook ids
+//            // are contained in the current user's friend list.
+//            PFQuery *friendQuery = [PFUser query];
+//            [friendQuery whereKey:@"fbId" containedIn:friendIds];
+//            
+//            // findObjects will return a list of PFUsers that are friends
+//            // with the current user
+//            NSArray *friendUsers = [friendQuery findObjects];
+//            
+//            NSLog(@"friends %@",friendUsers);
+//        }
+//    }];
+
 }
 
 @end

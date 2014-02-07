@@ -7,13 +7,22 @@
 //
 
 #import "ARAppDelegate.h"
-#import "ARMapViewController.h"
+#import "ARStateViewController.h"
+#import <Parse/Parse.h>
 @implementation ARAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+ 
+    [Parse setApplicationId:@"0hhL24TBq5aDR3iPf0aKBAxCk7kwYNUwqrrHFkWo"
+                  clientKey:@"iq2E532xpG7DWrdIQ9D0S2s3Pz1lUfMjXoQ5O1Ae"];
+    
+    
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    [PFFacebookUtils initializeFacebook];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    ARMapViewController *test = [[ARMapViewController alloc]   initWithNibName:@"ARMapViewController" bundle:nil];
+    ARStateViewController *test = [[ARStateViewController alloc]   initWithNibName:@"ARStateViewController" bundle:nil];
     self.window.rootViewController=test;
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
@@ -37,10 +46,17 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                        withSession:[PFFacebookUtils session]];
+}
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

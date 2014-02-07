@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		711B7F6918A41B4B008702FC /* ARStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 711B7F6718A41B4B008702FC /* ARStateViewController.m */; };
+		711B7F6A18A41B4B008702FC /* ARStateViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 711B7F6818A41B4B008702FC /* ARStateViewController~iphone.xib */; };
+		711B7F6E18A41DAB008702FC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711B7F6D18A41DAB008702FC /* Parse.framework */; };
+		711B7F7018A41DD9008702FC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711B7F6F18A41DD9008702FC /* AudioToolbox.framework */; };
+		711B7F7218A41DE0008702FC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711B7F7118A41DE0008702FC /* CFNetwork.framework */; };
+		711B7F7418A41DED008702FC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711B7F7318A41DED008702FC /* CoreLocation.framework */; };
+		711B7F7618A41DF5008702FC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 711B7F7518A41DF5008702FC /* libz.dylib */; };
+		711B7F7818A41E04008702FC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711B7F7718A41E04008702FC /* MobileCoreServices.framework */; };
+		711B7F7A18A41E0D008702FC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711B7F7918A41E0D008702FC /* QuartzCore.framework */; };
+		711B7F7C18A41E1A008702FC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711B7F7B18A41E1A008702FC /* Security.framework */; };
+		711B7F7E18A41E23008702FC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711B7F7D18A41E23008702FC /* StoreKit.framework */; };
+		711B7F8018A41E33008702FC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711B7F7F18A41E33008702FC /* SystemConfiguration.framework */; };
+		711B7F8218A42528008702FC /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711B7F8118A42528008702FC /* FacebookSDK.framework */; };
+		711B7F8418A4263B008702FC /* ARStateViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 711B7F8318A4263B008702FC /* ARStateViewController~ipad.xib */; };
 		713A6C4618A2A00C00741726 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 713A6C4518A2A00C00741726 /* Foundation.framework */; };
 		713A6C4818A2A00C00741726 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 713A6C4718A2A00C00741726 /* CoreGraphics.framework */; };
 		713A6C4A18A2A00C00741726 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 713A6C4918A2A00C00741726 /* UIKit.framework */; };
@@ -23,9 +37,11 @@
 		713A6C7918A2A0F400741726 /* ARMapViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 713A6C7718A2A0F400741726 /* ARMapViewController~iphone.xib */; };
 		713A6C7C18A2A1A500741726 /* ARMapViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 713A6C7B18A2A1A500741726 /* ARMapViewController~ipad.xib */; };
 		713A6C7E18A2A4F000741726 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 713A6C7D18A2A4F000741726 /* MapKit.framework */; };
-		713A6C8118A2AAB400741726 /* ARMapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A6C8018A2AAB400741726 /* ARMapViewAnnotation.m */; };
+		713A6C8118A2AAB400741726 /* ARGeoPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A6C8018A2AAB400741726 /* ARGeoPointAnnotation.m */; };
 		713A6C8518A2C79C00741726 /* cat.png in Resources */ = {isa = PBXBuildFile; fileRef = 713A6C8318A2C79C00741726 /* cat.png */; };
 		713A6C8618A2C79C00741726 /* monkey.png in Resources */ = {isa = PBXBuildFile; fileRef = 713A6C8418A2C79C00741726 /* monkey.png */; };
+		71CB40FD18A5338C00A7B1A4 /* ARGeoQueryAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 71CB40FC18A5338B00A7B1A4 /* ARGeoQueryAnnotation.m */; };
+		71CB410118A5342000A7B1A4 /* ARCircleOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 71CB410018A5342000A7B1A4 /* ARCircleOverlay.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +55,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		711B7F6618A41B4B008702FC /* ARStateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARStateViewController.h; sourceTree = "<group>"; };
+		711B7F6718A41B4B008702FC /* ARStateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARStateViewController.m; sourceTree = "<group>"; };
+		711B7F6818A41B4B008702FC /* ARStateViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ARStateViewController~iphone.xib"; sourceTree = "<group>"; };
+		711B7F6D18A41DAB008702FC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		711B7F6F18A41DD9008702FC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		711B7F7118A41DE0008702FC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		711B7F7318A41DED008702FC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		711B7F7518A41DF5008702FC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		711B7F7718A41E04008702FC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		711B7F7918A41E0D008702FC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		711B7F7B18A41E1A008702FC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		711B7F7D18A41E23008702FC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		711B7F7F18A41E33008702FC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		711B7F8118A42528008702FC /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		711B7F8318A4263B008702FC /* ARStateViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ARStateViewController~ipad.xib"; sourceTree = "<group>"; };
 		713A6C4218A2A00C00741726 /* ARMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		713A6C4518A2A00C00741726 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		713A6C4718A2A00C00741726 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -60,10 +91,14 @@
 		713A6C7718A2A0F400741726 /* ARMapViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ARMapViewController~iphone.xib"; sourceTree = "<group>"; };
 		713A6C7B18A2A1A500741726 /* ARMapViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ARMapViewController~ipad.xib"; sourceTree = "<group>"; };
 		713A6C7D18A2A4F000741726 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		713A6C7F18A2AAB400741726 /* ARMapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMapViewAnnotation.h; sourceTree = "<group>"; };
-		713A6C8018A2AAB400741726 /* ARMapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARMapViewAnnotation.m; sourceTree = "<group>"; };
+		713A6C7F18A2AAB400741726 /* ARGeoPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGeoPointAnnotation.h; sourceTree = "<group>"; };
+		713A6C8018A2AAB400741726 /* ARGeoPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGeoPointAnnotation.m; sourceTree = "<group>"; };
 		713A6C8318A2C79C00741726 /* cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat.png; sourceTree = "<group>"; };
 		713A6C8418A2C79C00741726 /* monkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkey.png; sourceTree = "<group>"; };
+		71CB40FB18A5338B00A7B1A4 /* ARGeoQueryAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGeoQueryAnnotation.h; sourceTree = "<group>"; };
+		71CB40FC18A5338B00A7B1A4 /* ARGeoQueryAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGeoQueryAnnotation.m; sourceTree = "<group>"; };
+		71CB40FF18A5342000A7B1A4 /* ARCircleOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCircleOverlay.h; sourceTree = "<group>"; };
+		71CB410018A5342000A7B1A4 /* ARCircleOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARCircleOverlay.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,10 +106,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				711B7F8018A41E33008702FC /* SystemConfiguration.framework in Frameworks */,
+				711B7F7E18A41E23008702FC /* StoreKit.framework in Frameworks */,
+				711B7F7C18A41E1A008702FC /* Security.framework in Frameworks */,
+				711B7F7A18A41E0D008702FC /* QuartzCore.framework in Frameworks */,
+				711B7F7818A41E04008702FC /* MobileCoreServices.framework in Frameworks */,
+				711B7F7618A41DF5008702FC /* libz.dylib in Frameworks */,
+				711B7F7418A41DED008702FC /* CoreLocation.framework in Frameworks */,
+				711B7F7218A41DE0008702FC /* CFNetwork.framework in Frameworks */,
+				711B7F7018A41DD9008702FC /* AudioToolbox.framework in Frameworks */,
 				713A6C7E18A2A4F000741726 /* MapKit.framework in Frameworks */,
 				713A6C4818A2A00C00741726 /* CoreGraphics.framework in Frameworks */,
+				711B7F8218A42528008702FC /* FacebookSDK.framework in Frameworks */,
 				713A6C4A18A2A00C00741726 /* UIKit.framework in Frameworks */,
 				713A6C4618A2A00C00741726 /* Foundation.framework in Frameworks */,
+				711B7F6E18A41DAB008702FC /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +140,7 @@
 		713A6C3918A2A00C00741726 = {
 			isa = PBXGroup;
 			children = (
+				711B7F6D18A41DAB008702FC /* Parse.framework */,
 				713A6C4B18A2A00C00741726 /* ARMap */,
 				713A6C6418A2A00C00741726 /* ARMapTests */,
 				713A6C4418A2A00C00741726 /* Frameworks */,
@@ -113,6 +160,16 @@
 		713A6C4418A2A00C00741726 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				711B7F8118A42528008702FC /* FacebookSDK.framework */,
+				711B7F7F18A41E33008702FC /* SystemConfiguration.framework */,
+				711B7F7D18A41E23008702FC /* StoreKit.framework */,
+				711B7F7B18A41E1A008702FC /* Security.framework */,
+				711B7F7918A41E0D008702FC /* QuartzCore.framework */,
+				711B7F7718A41E04008702FC /* MobileCoreServices.framework */,
+				711B7F7518A41DF5008702FC /* libz.dylib */,
+				711B7F7318A41DED008702FC /* CoreLocation.framework */,
+				711B7F7118A41DE0008702FC /* CFNetwork.framework */,
+				711B7F6F18A41DD9008702FC /* AudioToolbox.framework */,
 				713A6C7D18A2A4F000741726 /* MapKit.framework */,
 				713A6C4518A2A00C00741726 /* Foundation.framework */,
 				713A6C4718A2A00C00741726 /* CoreGraphics.framework */,
@@ -167,12 +224,15 @@
 		713A6C7418A2A09C00741726 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				71CB40FA18A5331A00A7B1A4 /* MapView */,
 				713A6C7518A2A0F400741726 /* ARMapViewController.h */,
 				713A6C7618A2A0F400741726 /* ARMapViewController.m */,
 				713A6C7718A2A0F400741726 /* ARMapViewController~iphone.xib */,
 				713A6C7B18A2A1A500741726 /* ARMapViewController~ipad.xib */,
-				713A6C7F18A2AAB400741726 /* ARMapViewAnnotation.h */,
-				713A6C8018A2AAB400741726 /* ARMapViewAnnotation.m */,
+				711B7F6618A41B4B008702FC /* ARStateViewController.h */,
+				711B7F6718A41B4B008702FC /* ARStateViewController.m */,
+				711B7F6818A41B4B008702FC /* ARStateViewController~iphone.xib */,
+				711B7F8318A4263B008702FC /* ARStateViewController~ipad.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -185,6 +245,19 @@
 			);
 			path = CutImage;
 			sourceTree = SOURCE_ROOT;
+		};
+		71CB40FA18A5331A00A7B1A4 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				713A6C7F18A2AAB400741726 /* ARGeoPointAnnotation.h */,
+				713A6C8018A2AAB400741726 /* ARGeoPointAnnotation.m */,
+				71CB40FB18A5338B00A7B1A4 /* ARGeoQueryAnnotation.h */,
+				71CB40FC18A5338B00A7B1A4 /* ARGeoQueryAnnotation.m */,
+				71CB40FF18A5342000A7B1A4 /* ARCircleOverlay.h */,
+				71CB410018A5342000A7B1A4 /* ARCircleOverlay.m */,
+			);
+			name = MapView;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -264,9 +337,11 @@
 			files = (
 				713A6C8618A2C79C00741726 /* monkey.png in Resources */,
 				713A6C8518A2C79C00741726 /* cat.png in Resources */,
+				711B7F6A18A41B4B008702FC /* ARStateViewController~iphone.xib in Resources */,
 				713A6C7918A2A0F400741726 /* ARMapViewController~iphone.xib in Resources */,
 				713A6C7C18A2A1A500741726 /* ARMapViewController~ipad.xib in Resources */,
 				713A6C5018A2A00C00741726 /* InfoPlist.strings in Resources */,
+				711B7F8418A4263B008702FC /* ARStateViewController~ipad.xib in Resources */,
 				713A6C5818A2A00C00741726 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,8 +363,11 @@
 			files = (
 				713A6C7818A2A0F400741726 /* ARMapViewController.m in Sources */,
 				713A6C5218A2A00C00741726 /* main.m in Sources */,
+				71CB410118A5342000A7B1A4 /* ARCircleOverlay.m in Sources */,
+				711B7F6918A41B4B008702FC /* ARStateViewController.m in Sources */,
 				713A6C5618A2A00C00741726 /* ARAppDelegate.m in Sources */,
-				713A6C8118A2AAB400741726 /* ARMapViewAnnotation.m in Sources */,
+				71CB40FD18A5338C00A7B1A4 /* ARGeoQueryAnnotation.m in Sources */,
+				713A6C8118A2AAB400741726 /* ARGeoPointAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +488,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/wkim/Source/ARMap,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ARMap/ARMap-Prefix.pch";
 				INFOPLIST_FILE = "ARMap/ARMap-Info.plist";
@@ -424,6 +506,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/wkim/Source/ARMap,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ARMap/ARMap-Prefix.pch";
 				INFOPLIST_FILE = "ARMap/ARMap-Info.plist";
@@ -494,6 +580,7 @@
 				713A6C7018A2A00C00741726 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		713A6C7118A2A00C00741726 /* Build configuration list for PBXNativeTarget "ARMapTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +589,7 @@
 				713A6C7318A2A00C00741726 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

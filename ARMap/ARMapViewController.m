@@ -7,12 +7,27 @@
 //
 
 #import "ARMapViewController.h"
-#import  "ARMapViewAnnotation.h"
+#import  "ARGeoPointAnnotation.h"
+#import "ARCircleOverlay.h"
+#import "ARGeoQueryAnnotation.h"
+#import <Parse/Parse.h>
+
+enum PinAnnotationTypeTag {
+    PinAnnotationTypeTagGeoPoint = 0,
+    PinAnnotationTypeTagGeoQuery = 1
+};
+
 @interface ARMapViewController ()
 {
     
     IBOutlet MKMapView *huntMapView;
+    IBOutlet UISlider *slider;
+    
 }
+@property (nonatomic, strong) CLLocation *location;
+@property (nonatomic, assign) CLLocationDistance radius;
+@property (nonatomic, strong) ARCircleOverlay *targetOverlay;
+
 
 @end
 
@@ -32,7 +47,8 @@
     [super viewDidLoad];
    // huntMapView.showsUserLocation=TRUE;
     
- 
+    huntMapView.region = MKCoordinateRegionMake(self.location.coordinate, MKCoordinateSpanMake(0.05f, 0.05f));
+    [self configureOverlay];
 
 }
 
@@ -49,34 +65,165 @@
 }
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
-    if ([[annotation title] isEqualToString:@"Current Location"]) {
-        return nil;
-    }
-
-      NSLog(@"viewForAnnotation");
-    static NSString *identifier = @"MyLocation";
-    if ([annotation isKindOfClass:[ARMapViewAnnotation class]]) {
+    static NSString *GeoPointAnnotationIdentifier = @"RedPinAnnotation";
+    static NSString *GeoQueryAnnotationIdentifier = @"PurplePinAnnotation";
+    
+//    if ([[annotation title] isEqualToString:@"Current Location"]) {
+//        return nil;
+//    }
+//
+//      NSLog(@"viewForAnnotation");
+//    static NSString *identifier = @"MyLocation";
+//    if ([annotation isKindOfClass:[ARMapViewAnnotation class]]) {
+//        
+//        MKPinAnnotationView *annotationView = (MKPinAnnotationView *) [huntMapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+//        if (annotationView == nil) {
+//            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+//        } else {
+//            annotationView.annotation = annotation;
+//        }
+//        
+//        if ([[annotation title] isEqualToString:@"monkey"])
+//            annotationView.image = [ UIImage imageNamed:@"monkey.png" ];
+//        else if ([[annotation title] isEqualToString:@"cat"])
+//            annotationView.image = [ UIImage imageNamed:@"cat.png" ];
+//        else
+//            annotationView.image = [ UIImage imageNamed:@"marker.png" ];
+//        annotationView.enabled = YES;
+//        annotationView.canShowCallout = YES;
+//        
+//        return annotationView;
+//    }
+    
+    if ([annotation isKindOfClass:[ARGeoQueryAnnotation class]]) {
+        MKPinAnnotationView *annotationView =
+        (MKPinAnnotationView *)[mapView
+                                dequeueReusableAnnotationViewWithIdentifier:GeoQueryAnnotationIdentifier];
         
-        MKPinAnnotationView *annotationView = (MKPinAnnotationView *) [huntMapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-        if (annotationView == nil) {
-            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-        } else {
-            annotationView.annotation = annotation;
+        if (!annotationView) {
+            annotationView = [[MKPinAnnotationView alloc]
+                              initWithAnnotation:annotation
+                              reuseIdentifier:GeoQueryAnnotationIdentifier];
+            annotationView.tag = PinAnnotationTypeTagGeoQuery;
+            annotationView.canShowCallout = YES;
+            annotationView.pinColor = MKPinAnnotationColorPurple;
+            annotationView.animatesDrop = NO;
+            annotationView.draggable = YES;
         }
         
-        if ([[annotation title] isEqualToString:@"monkey"])
-            annotationView.image = [ UIImage imageNamed:@"monkey.png" ];
-        else if ([[annotation title] isEqualToString:@"cat"])
-            annotationView.image = [ UIImage imageNamed:@"cat.png" ];
-        else
-            annotationView.image = [ UIImage imageNamed:@"marker.png" ];
-        annotationView.enabled = YES;
-        annotationView.canShowCallout = YES;
+        return annotationView;
+    } else if ([annotation isKindOfClass:[ARGeoPointAnnotation class]]) {
+        MKPinAnnotationView *annotationView =
+        (MKPinAnnotationView *)[mapView
+                                dequeueReusableAnnotationViewWithIdentifier:GeoPointAnnotationIdentifier];
+        
+        if (!annotationView) {
+            annotationView = [[MKPinAnnotationView alloc]
+                              initWithAnnotation:annotation
+                              reuseIdentifier:GeoPointAnnotationIdentifier];
+            annotationView.tag = PinAnnotationTypeTagGeoPoint;
+            annotationView.canShowCallout = YES;
+            annotationView.pinColor = MKPinAnnotationColorRed;
+            annotationView.animatesDrop = YES;
+            annotationView.draggable = NO;
+        }
+        
+        return annotationView;
+    }
+
+    
+    return nil; 
+}
+
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay {
+    static NSString *CircleOverlayIdentifier = @"Circle";
+    
+    if ([overlay isKindOfClass:[ARCircleOverlay class]]) {
+        ARCircleOverlay *circleOverlay = (ARCircleOverlay *)overlay;
+        
+        MKCircleView *annotationView =
+        (MKCircleView *)[mapView dequeueReusableAnnotationViewWithIdentifier:CircleOverlayIdentifier];
+        
+        if (!annotationView) {
+            MKCircle *circle = [MKCircle
+                                circleWithCenterCoordinate:circleOverlay.coordinate
+                                radius:circleOverlay.radius];
+            annotationView = [[MKCircleView alloc] initWithCircle:circle];
+        }
+        
+        if (overlay == self.targetOverlay) {
+            annotationView.fillColor = [UIColor colorWithRed:1.0f green:0.0f blue:0.0f alpha:0.3f];
+            annotationView.strokeColor = [UIColor redColor];
+            annotationView.lineWidth = 1.0f;
+        } else {
+            annotationView.fillColor = [UIColor colorWithWhite:0.3f alpha:0.3f];
+            annotationView.strokeColor = [UIColor purpleColor];
+            annotationView.lineWidth = 2.0f;
+        }
         
         return annotationView;
     }
     
-    return nil; 
+    return nil;
+}
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState {
+    if (![view isKindOfClass:[MKPinAnnotationView class]] || view.tag != PinAnnotationTypeTagGeoQuery) {
+        return;
+    }
+    
+    if (MKAnnotationViewDragStateStarting == newState) {
+        [huntMapView removeOverlays:huntMapView.overlays];
+    } else if (MKAnnotationViewDragStateNone == newState && MKAnnotationViewDragStateEnding == oldState) {
+        MKPinAnnotationView *pinAnnotationView = (MKPinAnnotationView *)view;
+        ARGeoQueryAnnotation *geoQueryAnnotation = (ARGeoQueryAnnotation *)pinAnnotationView.annotation;
+        self.location = [[CLLocation alloc] initWithLatitude:geoQueryAnnotation.coordinate.latitude longitude:geoQueryAnnotation.coordinate.longitude];
+        [self configureOverlay];
+    }
+}
+
+
+#pragma mark - SearchViewController
+
+- (void)setInitialLocation:(CLLocation *)aLocation {
+    self.location = aLocation;
+    self.radius = 1000;
+}
+
+
+#pragma mark - ()
+
+- (IBAction)sliderDidTouchUp:(UISlider *)aSlider {
+    if (self.targetOverlay) {
+        [huntMapView removeOverlay:self.targetOverlay];
+    }
+    
+    [self configureOverlay];
+}
+
+- (IBAction)sliderValueChanged:(UISlider *)aSlider {
+    self.radius = aSlider.value;
+    
+    if (self.targetOverlay) {
+        [huntMapView removeOverlay:self.targetOverlay];
+    }
+    
+    self.targetOverlay = [[ARCircleOverlay alloc] initWithCoordinate:self.location.coordinate radius:self.radius];
+    [huntMapView addOverlay:self.targetOverlay];
+}
+
+- (void)configureOverlay {
+    if (self.location) {
+        [huntMapView removeAnnotations:huntMapView.annotations];
+        [huntMapView removeOverlays:huntMapView.overlays];
+        
+        ARCircleOverlay *overlay = [[ARCircleOverlay alloc] initWithCoordinate:self.location.coordinate radius:self.radius];
+        [huntMapView addOverlay:overlay];
+        
+        ARGeoQueryAnnotation *annotation = [[ARGeoQueryAnnotation alloc] initWithCoordinate:self.location.coordinate radius:self.radius];
+        [huntMapView addAnnotation:annotation];
+        
+        [self updateLocations];
+    }
 }
 
 - (void)zoomToFitMapAnnotations {
@@ -110,7 +257,7 @@
     bottomRightCoord.latitude = 90;
     bottomRightCoord.longitude = -180;
     
-    for(ARMapViewAnnotation *annotation in aMapView.annotations)
+    for(ARGeoPointAnnotation *annotation in aMapView.annotations)
     {
         topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
         topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
@@ -156,11 +303,11 @@
     
    // MKCoordinateRegion region =MKCoordinateRegionMakeWithDistance (location, 20000, 20000);
   //  [huntMapView setRegion:region animated:YES];
-    ARMapViewAnnotation *newAnnotation = [[ARMapViewAnnotation alloc] initWithTitle:@"monkey" andCoordinate:location ];
+    ARGeoPointAnnotation *newAnnotation = [[ARGeoPointAnnotation alloc] initWithTitle:@"monkey" andCoordinate:location ];
     
     location.latitude = (double) 37.78615;
 	location.longitude = (double)-122.41040;
-    ARMapViewAnnotation *newAnnotation2 = [[ARMapViewAnnotation alloc] initWithTitle:@"cat" andCoordinate:location ];
+    ARGeoPointAnnotation *newAnnotation2 = [[ARGeoPointAnnotation alloc] initWithTitle:@"cat" andCoordinate:location ];
 ;
 	[huntMapView addAnnotation:newAnnotation];
     [huntMapView addAnnotation:newAnnotation2];
@@ -169,6 +316,26 @@
     
 
     
+}
+
+- (void)updateLocations {
+    CGFloat kilometers = self.radius/1000.0f;
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Location"];
+    [query setLimit:1000];
+    [query whereKey:@"location"
+       nearGeoPoint:[PFGeoPoint geoPointWithLatitude:self.location.coordinate.latitude
+                                           longitude:self.location.coordinate.longitude]
+   withinKilometers:kilometers];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects) {
+                ARGeoPointAnnotation *geoPointAnnotation = [[ARGeoPointAnnotation alloc]
+                                                          initWithObject:object];
+                [huntMapView addAnnotation:geoPointAnnotation];
+            }
+        }
+    }];
 }
 
 @end

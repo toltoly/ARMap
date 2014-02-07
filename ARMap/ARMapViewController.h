@@ -10,4 +10,7 @@
 #import <MapKit/MapKit.h>
 @interface ARMapViewController : UIViewController<MKMapViewDelegate>
 
+
+- (void)setInitialLocation:(CLLocation *)aLocation;
+
 @end

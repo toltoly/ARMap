@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
-@interface ARCircleOverlay : NSObject
+@interface ARCircleOverlay : NSObject<MKOverlay>
+
+@property (nonatomic, readonly) CLLocationDistance radius;
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+
+- (id)initWithCoordinate:(CLLocationCoordinate2D)aCoordinate radius:(CLLocationDistance)aRadius;
+
 
 @end
