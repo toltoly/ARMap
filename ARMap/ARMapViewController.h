@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-@interface ARMapViewController : UIViewController<MKMapViewDelegate>
+@interface ARMapViewController : UIViewController<MKMapViewDelegate,CLLocationManagerDelegate>
+
 
 
 - (void)setInitialLocation:(CLLocation *)aLocation;

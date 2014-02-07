@@ -173,9 +173,51 @@
 
 }
 
+#pragma mark - CLLocationManagerDelegate
+
+/**
+ Conditionally enable the Search/Add buttons:
+ If the location manager is generating updates, then enable the buttons;
+ If the location manager is failing, then disable the buttons.
+ */
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation {
+    self.navigationItem.leftBarButtonItem.enabled = YES;
+    self.navigationItem.rightBarButtonItem.enabled = YES;
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error {
+    self.navigationItem.leftBarButtonItem.enabled = NO;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+}
+
+
+#pragma mark - MasterViewController
+
+/**
+ Return a location manager -- create one if necessary.
+ */
+- (CLLocationManager *)locationManager {
+	
+    if (_locationManager != nil) {
+		return _locationManager;
+	}
+	
+	_locationManager = [[CLLocationManager alloc] init];
+    _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    _locationManager.delegate = self;
+  //  _locationManager.purpose = @"Your current location is used to demonstrate PFGeoPoint and Geo Queries.";
+	
+	return _locationManager;
+}
+
+
 -(void)gotoMapView:(BOOL)anim
 {
     ARMapViewController *test = [[ARMapViewController alloc]   initWithNibName:@"ARMapViewController" bundle:nil];
+    [test  setInitialLocation:self.locationManager.location];
     [self.navigationController pushViewController:test animated:anim];
 }
 

@@ -22,6 +22,7 @@ enum PinAnnotationTypeTag {
     
     IBOutlet MKMapView *huntMapView;
     IBOutlet UISlider *slider;
+
     
 }
 @property (nonatomic, strong) CLLocation *location;
@@ -32,6 +33,7 @@ enum PinAnnotationTypeTag {
 @end
 
 @implementation ARMapViewController
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,13 +47,22 @@ enum PinAnnotationTypeTag {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   // huntMapView.showsUserLocation=TRUE;
+    huntMapView.showsUserLocation=TRUE;
+    
+    
+
     
     huntMapView.region = MKCoordinateRegionMake(self.location.coordinate, MKCoordinateSpanMake(0.05f, 0.05f));
     [self configureOverlay];
 
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+   
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -190,7 +201,8 @@ enum PinAnnotationTypeTag {
 }
 
 
-#pragma mark - ()
+
+#pragma mark - Action Button
 
 - (IBAction)sliderDidTouchUp:(UISlider *)aSlider {
     if (self.targetOverlay) {
@@ -337,5 +349,7 @@ enum PinAnnotationTypeTag {
         }
     }];
 }
+
+
 
 @end

@@ -18,12 +18,12 @@
                   clientKey:@"iq2E532xpG7DWrdIQ9D0S2s3Pz1lUfMjXoQ5O1Ae"];
     
     
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+  //  [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     [PFFacebookUtils initializeFacebook];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     ARStateViewController *test = [[ARStateViewController alloc]   initWithNibName:@"ARStateViewController" bundle:nil];
-    
+    [test.locationManager startUpdatingLocation];
     UINavigationController *nav = [[UINavigationController alloc]  initWithRootViewController:test];
     
     [self.window makeKeyAndVisible];

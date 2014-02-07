@@ -6,8 +6,11 @@
 //  Copyright (c) 2014 Won Kim. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <Parse/Parse.h>
 
-@interface ARStateViewController : UIViewController
+@interface ARStateViewController : UIViewController<CLLocationManagerDelegate>
+
+@property (nonatomic, retain) CLLocationManager *locationManager;
 
 @end
