@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ARMapViewController">
             <connections>
                 <outlet property="huntMapView" destination="ynB-qi-QKG" id="mbX-oE-nRu"/>
+                <outlet property="slider" destination="0xy-53-bXq" id="avk-0H-zLg"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -40,6 +41,10 @@
                 <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="500" minValue="100" maxValue="5000" translatesAutoresizingMaskIntoConstraints="NO" id="0xy-53-bXq">
                     <rect key="frame" x="385" y="190" width="165" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="sliderDidTouchUp:" destination="-1" eventType="valueChanged" id="ibB-yP-a3Z"/>
+                        <action selector="sliderValueChanged:" destination="-1" eventType="valueChanged" id="Jyr-4t-akf"/>
+                    </connections>
                 </slider>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Radius(m)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbd-Ux-y54">
                     <rect key="frame" x="300" y="196" width="79" height="21"/>

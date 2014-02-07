@@ -8,6 +8,7 @@
 
 #import "ARStateViewController.h"
 #import <Parse/Parse.h>
+#import "ARMapViewController.h"
 @interface ARStateViewController ()
 {
     NSMutableArray* friendsDetailsArray;
@@ -33,6 +34,17 @@
     friendsDetailsArray=[NSMutableArray array];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if ([PFUser currentUser] && // Check if a user is cached
+        [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) // Check if user is linked to Facebook
+    {
+
+        [self gotoMapView:FALSE];
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -68,10 +80,14 @@
     
 }
 
+
+
 - (IBAction)pressGetfriend:(id)sender
 {
+  
+    [self gotoMapView:TRUE];
     
-    [PFAnalytics trackEvent:@"pressGetfriend"];
+   // [PFAnalytics trackEvent:@"pressGetfriend"];
     
     // Initialize the friend picker
 //    FBFriendPickerViewController *friendPickerController =
@@ -155,6 +171,12 @@
 //        }
 //    }];
 
+}
+
+-(void)gotoMapView:(BOOL)anim
+{
+    ARMapViewController *test = [[ARMapViewController alloc]   initWithNibName:@"ARMapViewController" bundle:nil];
+    [self.navigationController pushViewController:test animated:anim];
 }
 
 @end

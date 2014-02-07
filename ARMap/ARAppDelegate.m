@@ -23,7 +23,13 @@
     [PFFacebookUtils initializeFacebook];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     ARStateViewController *test = [[ARStateViewController alloc]   initWithNibName:@"ARStateViewController" bundle:nil];
-    self.window.rootViewController=test;
+    
+    UINavigationController *nav = [[UINavigationController alloc]  initWithRootViewController:test];
+    
+    [self.window makeKeyAndVisible];
+    
+    self.window.rootViewController = nav;
+ //   self.window.rootViewController=test;
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
