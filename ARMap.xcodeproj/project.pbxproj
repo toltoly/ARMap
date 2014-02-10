@@ -40,6 +40,11 @@
 		713A6C8118A2AAB400741726 /* ARGeoPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 713A6C8018A2AAB400741726 /* ARGeoPointAnnotation.m */; };
 		713A6C8518A2C79C00741726 /* cat.png in Resources */ = {isa = PBXBuildFile; fileRef = 713A6C8318A2C79C00741726 /* cat.png */; };
 		713A6C8618A2C79C00741726 /* monkey.png in Resources */ = {isa = PBXBuildFile; fileRef = 713A6C8418A2C79C00741726 /* monkey.png */; };
+		7144206E18A95C5F0020BD0A /* UserInfo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7144206C18A95C5F0020BD0A /* UserInfo.xcdatamodeld */; };
+		7144207118A960030020BD0A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144207018A960030020BD0A /* User.m */; };
+		7144207318A961000020BD0A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7144207218A961000020BD0A /* CoreData.framework */; };
+		7144207618A961C70020BD0A /* ARCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144207518A961C70020BD0A /* ARCoreDataController.m */; };
+		719571F018A96DBF00464B00 /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 719571EF18A96DBF00464B00 /* Score.m */; };
 		71CB40FD18A5338C00A7B1A4 /* ARGeoQueryAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 71CB40FC18A5338B00A7B1A4 /* ARGeoQueryAnnotation.m */; };
 		71CB410118A5342000A7B1A4 /* ARCircleOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 71CB410018A5342000A7B1A4 /* ARCircleOverlay.m */; };
 		71CB412018A5902E00A7B1A4 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 71CB410418A5902E00A7B1A4 /* MKAnnotationView+WebCache.m */; };
@@ -109,6 +114,14 @@
 		713A6C8018A2AAB400741726 /* ARGeoPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGeoPointAnnotation.m; sourceTree = "<group>"; };
 		713A6C8318A2C79C00741726 /* cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat.png; sourceTree = "<group>"; };
 		713A6C8418A2C79C00741726 /* monkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkey.png; sourceTree = "<group>"; };
+		7144206D18A95C5F0020BD0A /* UserInfo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserInfo.xcdatamodel; sourceTree = "<group>"; };
+		7144206F18A960030020BD0A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		7144207018A960030020BD0A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		7144207218A961000020BD0A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7144207418A961C70020BD0A /* ARCoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCoreDataController.h; sourceTree = "<group>"; };
+		7144207518A961C70020BD0A /* ARCoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARCoreDataController.m; sourceTree = "<group>"; };
+		719571EE18A96DBF00464B00 /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
+		719571EF18A96DBF00464B00 /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
 		71CB40FB18A5338B00A7B1A4 /* ARGeoQueryAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGeoQueryAnnotation.h; sourceTree = "<group>"; };
 		71CB40FC18A5338B00A7B1A4 /* ARGeoQueryAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGeoQueryAnnotation.m; sourceTree = "<group>"; };
 		71CB40FF18A5342000A7B1A4 /* ARCircleOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCircleOverlay.h; sourceTree = "<group>"; };
@@ -149,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7144207318A961000020BD0A /* CoreData.framework in Frameworks */,
 				711B7F8018A41E33008702FC /* SystemConfiguration.framework in Frameworks */,
 				711B7F7E18A41E23008702FC /* StoreKit.framework in Frameworks */,
 				711B7F7C18A41E1A008702FC /* Security.framework in Frameworks */,
@@ -203,6 +217,7 @@
 		713A6C4418A2A00C00741726 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7144207218A961000020BD0A /* CoreData.framework */,
 				711B7F8118A42528008702FC /* FacebookSDK.framework */,
 				711B7F7F18A41E33008702FC /* SystemConfiguration.framework */,
 				711B7F7D18A41E23008702FC /* StoreKit.framework */,
@@ -225,6 +240,7 @@
 		713A6C4B18A2A00C00741726 /* ARMap */ = {
 			isa = PBXGroup;
 			children = (
+				7144206B18A95C1C0020BD0A /* CoreData */,
 				713A6C8218A2C79C00741726 /* CutImage */,
 				713A6C7418A2A09C00741726 /* View */,
 				713A6C5418A2A00C00741726 /* ARAppDelegate.h */,
@@ -289,6 +305,20 @@
 			);
 			path = CutImage;
 			sourceTree = SOURCE_ROOT;
+		};
+		7144206B18A95C1C0020BD0A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				7144206C18A95C5F0020BD0A /* UserInfo.xcdatamodeld */,
+				719571EE18A96DBF00464B00 /* Score.h */,
+				719571EF18A96DBF00464B00 /* Score.m */,
+				7144206F18A960030020BD0A /* User.h */,
+				7144207018A960030020BD0A /* User.m */,
+				7144207418A961C70020BD0A /* ARCoreDataController.h */,
+				7144207518A961C70020BD0A /* ARCoreDataController.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
 		};
 		71CB40FA18A5331A00A7B1A4 /* MapView */ = {
 			isa = PBXGroup;
@@ -445,19 +475,23 @@
 				71CB412318A5902E00A7B1A4 /* SDWebImageCompat.m in Sources */,
 				71CB412918A5902E00A7B1A4 /* UIButton+WebCache.m in Sources */,
 				71CB412B18A5902E00A7B1A4 /* UIImage+MultiFormat.m in Sources */,
+				7144206E18A95C5F0020BD0A /* UserInfo.xcdatamodeld in Sources */,
 				71CB412818A5902E00A7B1A4 /* SDWebImagePrefetcher.m in Sources */,
 				713A6C7818A2A0F400741726 /* ARMapViewController.m in Sources */,
+				719571F018A96DBF00464B00 /* Score.m in Sources */,
 				71CB412018A5902E00A7B1A4 /* MKAnnotationView+WebCache.m in Sources */,
 				71CB412C18A5902E00A7B1A4 /* UIImage+WebP.m in Sources */,
 				713A6C5218A2A00C00741726 /* main.m in Sources */,
 				71CB412618A5902E00A7B1A4 /* SDWebImageDownloaderOperation.m in Sources */,
 				71CB412418A5902E00A7B1A4 /* SDWebImageDecoder.m in Sources */,
+				7144207118A960030020BD0A /* User.m in Sources */,
 				71CB412D18A5902E00A7B1A4 /* UIImageView+WebCache.m in Sources */,
 				71CB410118A5342000A7B1A4 /* ARCircleOverlay.m in Sources */,
 				71CB412118A5902E00A7B1A4 /* NSData+GIF.m in Sources */,
 				71CB412518A5902E00A7B1A4 /* SDWebImageDownloader.m in Sources */,
 				711B7F6918A41B4B008702FC /* ARStateViewController.m in Sources */,
 				713A6C5618A2A00C00741726 /* ARAppDelegate.m in Sources */,
+				7144207618A961C70020BD0A /* ARCoreDataController.m in Sources */,
 				71CB40FD18A5338C00A7B1A4 /* ARGeoQueryAnnotation.m in Sources */,
 				71CB412718A5902E00A7B1A4 /* SDWebImageManager.m in Sources */,
 				713A6C8118A2AAB400741726 /* ARGeoPointAnnotation.m in Sources */,
@@ -686,6 +720,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7144206C18A95C5F0020BD0A /* UserInfo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7144206D18A95C5F0020BD0A /* UserInfo.xcdatamodel */,
+			);
+			currentVersion = 7144206D18A95C5F0020BD0A /* UserInfo.xcdatamodel */;
+			path = UserInfo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 713A6C3A18A2A00C00741726 /* Project object */;
 }

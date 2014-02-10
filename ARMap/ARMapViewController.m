@@ -371,6 +371,11 @@ enum PinAnnotationTypeTag {
 //        });
 //    });
     
+    ARCoreDataController* coreData=[ARCoreDataController getInstance];
+    
+
+    [coreData getScores];
+
     NSLog(@"pressButton");
     CLLocationCoordinate2D location;
 	location.latitude = (double) 37.78754;

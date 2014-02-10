@@ -9,6 +9,8 @@
 #import "ARStateViewController.h"
 #import <Parse/Parse.h>
 #import "ARMapViewController.h"
+#import "ARCoreDataController.h"
+
 @interface ARStateViewController ()
 {
     NSMutableArray* friendsDetailsArray;
@@ -42,7 +44,7 @@
         [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) // Check if user is linked to Facebook
     {
 
-        [self gotoMapView:FALSE];
+      //  [self gotoMapView:FALSE];
     }
 }
 - (void)didReceiveMemoryWarning
@@ -84,7 +86,13 @@
 
 - (IBAction)pressGetfriend:(id)sender
 {
+    
+    ARCoreDataController* coreData=[ARCoreDataController getInstance];
   
+    NSString* fmt=@"{ \"score\":\"%d\",\"latitude\":\"%d\" ,\"longitude\":\"%d\" }";
+    NSString* jsonString=[NSString stringWithFormat:fmt,1000,
+                          _locationManager.location.coordinate.latitude,_locationManager.location.coordinate.longitude];
+    [coreData updateScore:jsonString];
     [self gotoMapView:TRUE];
     
    // [PFAnalytics trackEvent:@"pressGetfriend"];
@@ -183,14 +191,14 @@
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation {
-    self.navigationItem.leftBarButtonItem.enabled = YES;
-    self.navigationItem.rightBarButtonItem.enabled = YES;
+//    self.navigationItem.leftBarButtonItem.enabled = YES;
+//    self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
-    self.navigationItem.leftBarButtonItem.enabled = NO;
-    self.navigationItem.rightBarButtonItem.enabled = NO;
+//    self.navigationItem.leftBarButtonItem.enabled = NO;
+//    self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 
@@ -220,5 +228,16 @@
     [test  setInitialLocation:self.locationManager.location];
     [self.navigationController pushViewController:test animated:anim];
 }
+
+#pragma mark -helper
+
+-(void)saveUserInfo:(NSString*)userInfo
+{
+    NSArray *jsonObject = [NSJSONSerialization JSONObjectWithData:[userInfo dataUsingEncoding:NSUTF8StringEncoding]
+                                                          options:0 error:NULL];
+    NSLog(@"jsonObject=%@", jsonObject);
+}
+
+
 
 @end

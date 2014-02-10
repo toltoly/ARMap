@@ -13,4 +13,7 @@
 
 @property (nonatomic, retain) CLLocationManager *locationManager;
 
+
+-(void)saveUserInfo:(NSString*)userInfo;
+
 @end
