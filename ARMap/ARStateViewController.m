@@ -92,7 +92,19 @@
     NSString* fmt=@"{ \"score\":\"%d\",\"latitude\":\"%d\" ,\"longitude\":\"%d\" }";
     NSString* jsonString=[NSString stringWithFormat:fmt,1000,
                           _locationManager.location.coordinate.latitude,_locationManager.location.coordinate.longitude];
+    
     [coreData updateScore:jsonString];
+    
+    
+    
+    CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder reverseGeocodeLocation:_locationManager.location completionHandler:^(NSArray *placemarks, NSError *error) {
+        for (CLPlacemark * placemark in placemarks) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Current City" message:[NSString stringWithFormat:@"Your Current City:%@",[placemark country]] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
+            [alert  show];
+        }
+    }];
+    
     [self gotoMapView:TRUE];
     
    // [PFAnalytics trackEvent:@"pressGetfriend"];
@@ -127,33 +139,35 @@
 //    [friendPickerController loadData];
 //    // Show the picker modally
 //    [friendPickerController presentModallyFromViewController:self animated:YES handler:nil];
-//    NSString* query = [NSString stringWithFormat:@"SELECT uid,name,birthday_date,picture FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me())"];
-//    
-//    // Set up the query parameter
-//    NSDictionary *queryParam = [NSDictionary dictionaryWithObjectsAndKeys:
-//                                query, @"q", nil];
-//    // Make the API request that uses FQL
-//    [FBRequestConnection startWithGraphPath:@"/fql"
-//                                 parameters:queryParam
-//                                 HTTPMethod:@"GET"
-//                          completionHandler:^(FBRequestConnection *connection,
-//                                              id result,
-//                                              NSError *error) {
-//                              if (!error)
-//                              {
-//                                  NSLog(@"result is %@",result);
-//                                  
-//                                  [friendsDetailsArray removeAllObjects];
-//                                  NSArray *resultData = [result objectForKey:@"data"];
-//                                  if ([resultData count] > 0) {
-//                                      for (NSUInteger i=0; i<[resultData count] ; i++) {
-//                                          [friendsDetailsArray addObject:[resultData objectAtIndex:i]];
-//                                          NSLog(@"friend details are %@",friendsDetailsArray);
-//                                      }
-//                                  }
-//                              }
-//                              
-//                          }];
+   // SELECT uid FROM user WHERE is_app_user=true AND uid IN (SELECT uid2 FROM friend WHERE uid1 = me())
+
+    NSString* query = [NSString stringWithFormat:@"SELECT uid,name,pic_square FROM user WHERE is_app_user=true AND uid IN (SELECT uid2 FROM friend WHERE uid1 = me())"];
+    
+    // Set up the query parameter
+    NSDictionary *queryParam = [NSDictionary dictionaryWithObjectsAndKeys:
+                                query, @"q", nil];
+    // Make the API request that uses FQL
+    [FBRequestConnection startWithGraphPath:@"/fql"
+                                 parameters:queryParam
+                                 HTTPMethod:@"GET"
+                          completionHandler:^(FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error) {
+                              if (!error)
+                              {
+                                  NSLog(@"result is %@",result);
+                                  
+                                  [friendsDetailsArray removeAllObjects];
+                                  NSArray *resultData = [result objectForKey:@"data"];
+                                  if ([resultData count] > 0) {
+                                      for (NSUInteger i=0; i<[resultData count] ; i++) {
+                                          [friendsDetailsArray addObject:[resultData objectAtIndex:i]];
+                                          NSLog(@"friend details are %@",friendsDetailsArray);
+                                      }
+                                  }
+                              }
+                              
+                          }];
     
     
 //    [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {

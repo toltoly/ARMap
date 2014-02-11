@@ -14,5 +14,10 @@
 @dynamic profiles;
 @dynamic objectId;
 @dynamic level;
-
+@dynamic maxBullets;
+@dynamic curBullets;
+@dynamic coin;
+@dynamic latitude;
+@dynamic longitude;
+@dynamic score;
 @end

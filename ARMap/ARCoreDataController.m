@@ -169,8 +169,6 @@ static ARCoreDataController *sharedInstance;
 -(void)getScores
 {
 
-
-
     NSFetchRequest *fetchRequest=[NSFetchRequest fetchRequestWithEntityName:@"Score"];
 
     NSArray *array=[self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
