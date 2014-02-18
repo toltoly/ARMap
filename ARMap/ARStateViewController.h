@@ -8,8 +8,8 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import <Parse/Parse.h>
-
-@interface ARStateViewController : UIViewController<CLLocationManagerDelegate>
+#import <MapKit/MapKit.h>
+@interface ARStateViewController : UIViewController<MKMapViewDelegate,CLLocationManagerDelegate>
 
 @property (nonatomic, retain) CLLocationManager *locationManager;
 

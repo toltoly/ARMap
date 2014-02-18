@@ -17,7 +17,7 @@
 
 
 - (NSString *)description {
-    NSString *descriptionString = [NSString stringWithFormat:@"Score: %@ \n latitude: %@ \n longitude: %@ \n", self.score, self.latitude,self.longitude];
+    NSString *descriptionString = [NSString stringWithFormat:@"Score: %@ \n latitude: %f \n longitude: %f \n", self.score, [self.latitude doubleValue], [self.longitude doubleValue]];
     return descriptionString;
     
 }

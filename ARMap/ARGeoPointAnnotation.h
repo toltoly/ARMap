@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import <Parse/Parse.h>
+#import "Score.h"
 @interface ARGeoPointAnnotation : NSObject<MKAnnotation>
 {
     NSString *title;
@@ -24,5 +25,5 @@
 
 - (id)initWithObject:(PFObject *)aObject;
 - (id)initWithTitle:(NSString *)ttl andCoordinate:(CLLocationCoordinate2D)c2d;
-
+- (id)initWithScore:(Score *)score;
 @end

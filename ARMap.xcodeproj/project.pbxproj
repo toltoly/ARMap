@@ -21,6 +21,7 @@
 		711B7F8018A41E33008702FC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711B7F7F18A41E33008702FC /* SystemConfiguration.framework */; };
 		711B7F8218A42528008702FC /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711B7F8118A42528008702FC /* FacebookSDK.framework */; };
 		711B7F8418A4263B008702FC /* ARStateViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 711B7F8318A4263B008702FC /* ARStateViewController~ipad.xib */; };
+		7129541818B3D08E00A3C27A /* Weapon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7129541718B3D08E00A3C27A /* Weapon.m */; };
 		713A6C4618A2A00C00741726 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 713A6C4518A2A00C00741726 /* Foundation.framework */; };
 		713A6C4818A2A00C00741726 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 713A6C4718A2A00C00741726 /* CoreGraphics.framework */; };
 		713A6C4A18A2A00C00741726 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 713A6C4918A2A00C00741726 /* UIKit.framework */; };
@@ -89,6 +90,8 @@
 		711B7F7F18A41E33008702FC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		711B7F8118A42528008702FC /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		711B7F8318A4263B008702FC /* ARStateViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ARStateViewController~ipad.xib"; sourceTree = "<group>"; };
+		7129541618B3D08E00A3C27A /* Weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weapon.h; sourceTree = "<group>"; };
+		7129541718B3D08E00A3C27A /* Weapon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weapon.m; sourceTree = "<group>"; };
 		713A6C4218A2A00C00741726 /* ARMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		713A6C4518A2A00C00741726 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		713A6C4718A2A00C00741726 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -310,6 +313,8 @@
 			isa = PBXGroup;
 			children = (
 				7144206C18A95C5F0020BD0A /* UserInfo.xcdatamodeld */,
+				7129541618B3D08E00A3C27A /* Weapon.h */,
+				7129541718B3D08E00A3C27A /* Weapon.m */,
 				719571EE18A96DBF00464B00 /* Score.h */,
 				719571EF18A96DBF00464B00 /* Score.m */,
 				7144206F18A960030020BD0A /* User.h */,
@@ -490,6 +495,7 @@
 				71CB412118A5902E00A7B1A4 /* NSData+GIF.m in Sources */,
 				71CB412518A5902E00A7B1A4 /* SDWebImageDownloader.m in Sources */,
 				711B7F6918A41B4B008702FC /* ARStateViewController.m in Sources */,
+				7129541818B3D08E00A3C27A /* Weapon.m in Sources */,
 				713A6C5618A2A00C00741726 /* ARAppDelegate.m in Sources */,
 				7144207618A961C70020BD0A /* ARCoreDataController.m in Sources */,
 				71CB40FD18A5338C00A7B1A4 /* ARGeoQueryAnnotation.m in Sources */,

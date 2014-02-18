@@ -8,6 +8,8 @@
 
 #import "ARCoreDataController.h"
 #import "Score.h"
+#import "User.h"
+#import "Weapon.h"
 @implementation ARCoreDataController
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -36,22 +38,52 @@ static ARCoreDataController *sharedInstance;
     return self;
 }
 
-- (void)saveUser
+- (void)saveUser:(NSString*)userInfo
 {
+    
+    NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[userInfo dataUsingEncoding:NSUTF8StringEncoding]
+                                                               options:0 error:NULL];
+    NSLog(@"jsonObject=%@", jsonObject);
+
     NSError *error = nil;
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    NSFetchRequest *fetchRequest=[NSFetchRequest fetchRequestWithEntityName:@"User"];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"objectId==%@",jsonObject[@"objectId"]];
+    fetchRequest.predicate=predicate;
+    User *user=(User*)[[self.managedObjectContext executeFetchRequest:fetchRequest error:nil] lastObject];
+    
+//   NSString * profiles;
+//    NSString * objectId;
+//   NSNumber * level;
+//    NSNumber * coin;
+//    NSNumber * score;
     
     
-//    NSManagedObject *newContact;
-//    newContact = [NSEntityDescription
-//                  insertNewObjectForEntityForName:@"Contacts"
-//                  inManagedObjectContext:context];
-//    [newContact setValue: _name.text forKey:@"name"];
-//    [newContact setValue: _address.text forKey:@"address"];
-//    [newContact setValue: _phone.text forKey:@"phone"];
-//    _name.text = @"";
-//    _address.text = @"";
-//    _phone.text = @"";
+    if(user!=nil)
+    {
+
+        user.profiles=jsonObject[@"profiles"];
+        user.objectId=jsonObject[@"objectId"] ;
+        user.level=[NSNumber numberWithDouble:[jsonObject[@"level"] integerValue]] ;
+        user.coin=[NSNumber numberWithInt:[jsonObject[@"coin"]integerValue]];
+        user.score=[NSNumber numberWithDouble:[jsonObject[@"score"] integerValue]] ;
+
+        
+    }
+    else
+    {
+        User *newUser= [NSEntityDescription
+                                    insertNewObjectForEntityForName:@"User"
+                                    inManagedObjectContext:managedObjectContext];
+        
+        newUser.profiles=jsonObject[@"profiles"];
+        newUser.objectId=jsonObject[@"objectId"] ;
+        newUser.level=[NSNumber numberWithDouble:[jsonObject[@"level"] integerValue]] ;
+        newUser.coin=[NSNumber numberWithInt:[jsonObject[@"coin"]integerValue]];
+        newUser.score=[NSNumber numberWithDouble:[jsonObject[@"score"] integerValue]] ;
+    }
+    
+    
     
     if (managedObjectContext != nil) {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
@@ -63,39 +95,21 @@ static ARCoreDataController *sharedInstance;
     }
 }
 
-- (void)getUser
+- (NSString*)getUser
 {
     
-//    NSManagedObjectContext *context =self.managedObjectContext;
-
+    NSFetchRequest *fetchRequest=[NSFetchRequest fetchRequestWithEntityName:@"User"];
     
-//    NSEntityDescription *entityDesc =
-//    [NSEntityDescription entityForName:@"Contacts"
-//                inManagedObjectContext:context];
-//    
-//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-//    [request setEntity:entityDesc];
-//    
-//    NSPredicate *pred =
-//    [NSPredicate predicateWithFormat:@"(name = %@)",
-//     _name.text];
-//    [request setPredicate:pred];
-//    NSManagedObject *matches = nil;
-//    
-//    NSError *error;
-//    NSArray *objects = [context executeFetchRequest:request
-//                                              error:&error];
-//    
-//    if ([objects count] == 0) {
-//        _status.text = @"No matches";
-//    } else {
-//        matches = objects[0];
-//        _address.text = [matches valueForKey:@"address"];
-//        _phone.text = [matches valueForKey:@"phone"];
-//        _status.text = [NSString stringWithFormat:
-//                        @"%lu matches found", (unsigned long)[objects count]];
-//    }
-//    
+    NSArray *array=[self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    
+    for(User *user in array)
+    {
+        NSLog(@" score %@",user);
+        
+    }
+
+    return nil;
 }
 
 -(void)saveScore:(NSString*)data
@@ -140,20 +154,26 @@ static ARCoreDataController *sharedInstance;
     NSFetchRequest *fetchRequest=[NSFetchRequest fetchRequestWithEntityName:@"Score"];
     NSPredicate *predicate=[NSPredicate predicateWithFormat:@"latitude==%@ AND longitude==%@ ",jsonObject[@"latitude"],jsonObject[@"longitude"]];
     fetchRequest.predicate=predicate;
-    NSManagedObject *newScore=[[self.managedObjectContext executeFetchRequest:fetchRequest error:nil] lastObject];
+    Score *newScore=(Score*)[[self.managedObjectContext executeFetchRequest:fetchRequest error:nil] lastObject];
     
     if(newScore!=nil)
     {
-        [newScore setValue:[NSNumber numberWithInt:[jsonObject[@"score"] integerValue]] forKey:@"score"];
-        [newScore setValue: [NSNumber numberWithDouble:[jsonObject[@"latitude"] doubleValue]]  forKey:@"latitude"];
-        [newScore setValue: [NSNumber numberWithDouble:[jsonObject[@"longitude"] doubleValue]]  forKey:@"longitude"];
-        if (managedObjectContext != nil) {
-            if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-                abort();
-            }
+        if([newScore.score integerValue]<[jsonObject[@"score"]integerValue])
+        {
+            NSLog(@"Update Score %d",[newScore.score integerValue]);
+            
+            newScore.score=[NSNumber numberWithInt:[jsonObject[@"score"]integerValue]];
+            newScore.latitude=[NSNumber numberWithDouble:[jsonObject[@"latitude"] doubleValue]] ;
+            newScore.longitude=[NSNumber numberWithDouble:[jsonObject[@"longitude"] doubleValue]] ;
+
+            if (managedObjectContext != nil) {
+                if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+                    // Replace this implementation with code to handle the error appropriately.
+                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                    abort();
+                }
+        }
         }
         
     }
@@ -166,7 +186,7 @@ static ARCoreDataController *sharedInstance;
 
 }
 
--(void)getScores
+-(NSArray*)getScores
 {
 
     NSFetchRequest *fetchRequest=[NSFetchRequest fetchRequestWithEntityName:@"Score"];
@@ -180,7 +200,90 @@ static ARCoreDataController *sharedInstance;
         
     }
 
+    return  array;
     
+}
+
+
+-(void)saveWeapon:(NSString*)data
+{
+    
+//    NSNumber * level;
+//    NSNumber * curBullet;
+//    NSNumber * maxBullet;
+//    NSNumber * type;
+//    NSNumber * power;
+//    NSNumber * lock;
+    
+    NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[data dataUsingEncoding:NSUTF8StringEncoding]
+                                                               options:0 error:NULL];
+    NSLog(@"jsonObject=%@", jsonObject);
+    
+    NSError *error = nil;
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    NSFetchRequest *fetchRequest=[NSFetchRequest fetchRequestWithEntityName:@"Weapon"];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"type==%@",jsonObject[@"type"]];
+    fetchRequest.predicate=predicate;
+    Weapon *weapon=(Weapon*)[[self.managedObjectContext executeFetchRequest:fetchRequest error:nil] lastObject];
+    
+
+    
+    
+    if(weapon!=nil)
+    {
+
+        weapon.level=[NSNumber numberWithDouble:[jsonObject[@"level"] integerValue]] ;
+        weapon.curBullet=[NSNumber numberWithInt:[jsonObject[@"curBullet"]integerValue]];
+        weapon.maxBullet=[NSNumber numberWithDouble:[jsonObject[@"maxBullet"] integerValue]] ;
+        weapon.type=[NSNumber numberWithDouble:[jsonObject[@"type"] integerValue]] ;
+        weapon.power=[NSNumber numberWithInt:[jsonObject[@"power"]integerValue]];
+        weapon.lock=[NSNumber numberWithDouble:[jsonObject[@"lock"] boolValue]] ;
+        
+    }
+    else
+    {
+        Weapon *newWeapon= [NSEntityDescription
+                        insertNewObjectForEntityForName:@"Weapon"
+                        inManagedObjectContext:managedObjectContext];
+        
+        newWeapon.level=[NSNumber numberWithDouble:[jsonObject[@"level"] integerValue]] ;
+        newWeapon.curBullet=[NSNumber numberWithInt:[jsonObject[@"curBullet"]integerValue]];
+        newWeapon.maxBullet=[NSNumber numberWithDouble:[jsonObject[@"maxBullet"] integerValue]] ;
+        newWeapon.type=[NSNumber numberWithDouble:[jsonObject[@"type"] integerValue]] ;
+        newWeapon.power=[NSNumber numberWithInt:[jsonObject[@"power"]integerValue]];
+        newWeapon.lock=[NSNumber numberWithDouble:[jsonObject[@"lock"] boolValue]] ;
+    }
+    
+    
+    
+    if (managedObjectContext != nil) {
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+
+
+    
+}
+-(NSString*)getWeapon:(NSNumber*)type
+{
+    
+    NSFetchRequest *fetchRequest=[NSFetchRequest fetchRequestWithEntityName:@"Weapon"];
+    
+    NSArray *array=[self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"type==%@",type];
+    fetchRequest.predicate=predicate;
+    
+    for(User *user in array)
+    {
+        NSLog(@" score %@",user);
+        
+    }
+
+    return  nil;
 }
 #pragma mark - Core Data stack
 

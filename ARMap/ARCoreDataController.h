@@ -20,12 +20,20 @@
 
 + (ARCoreDataController*)getInstance;
 
-- (void)saveUser;
-- (void)getUser;
+- (void)saveUser:(NSString*)userInfo;
+- (NSString*)getUser;
+
+
 
 -(void)saveScore:(NSString*)data;
 -(void)updateScore:(NSString*)data;
--(void)getScores;
+-(NSArray*)getScores;
+
+
+-(void)saveWeapon:(NSString*)data;
+-(NSString*)getWeapon:(NSNumber*)type;
+
+
 
 - (NSURL *)applicationDocumentsDirectory;
 

@@ -45,5 +45,19 @@
 
 }
 
+- (id)initWithScore:(Score *)score
+{
+    
+    self = [super init];
+    if (self) {
+       
+        self.title=[NSString stringWithFormat:@"%@",score.score];
+        self.coordinate = CLLocationCoordinate2DMake([score.latitude doubleValue], [score.longitude doubleValue]);
+
+    }
+    return self;
+   
+    
+}
 
 @end
